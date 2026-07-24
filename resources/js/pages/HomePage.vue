@@ -67,9 +67,9 @@ function discountBadge(product: { discount?: number }): string {
     />
 
     <!-- Hero -->
-    <section class="relative overflow-hidden bg-[#0a4d3c] text-white">
+    <section class="relative overflow-hidden bg-[#04452c] text-white">
         <!-- Large logo watermark -->
-        <div class="pointer-events-none absolute right-[-20px] -top-20 opacity-[0.07]">
+        <div class="pointer-events-none absolute right-[-20px] -top-20 opacity-100">
             <img
                 src="/images/logo.jpeg"
                 alt=""
@@ -78,10 +78,10 @@ function discountBadge(product: { discount?: number }): string {
         </div>
 
         <!-- Content -->
-        <div class="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:py-28">
-            <div class="max-w-2xl">
+        <div class="relative mx-auto max-w-7xl px-4 py-20 text-center sm:px-6 lg:py-28">
+            <div>
                 <!-- Logo badge -->
-                <div class="mb-6 inline-flex items-center gap-3 rounded-xl bg-white/10 px-4 py-2 backdrop-blur-sm">
+                <div class="mx-auto mb-6 inline-flex items-center gap-3 rounded-xl bg-white/10 px-4 py-2 backdrop-blur-sm">
                     <img
                         src="/images/logo.jpeg"
                         alt="Mirum Textile"
@@ -102,7 +102,7 @@ function discountBadge(product: { discount?: number }): string {
                         )
                     }}
                 </p>
-                <div class="flex flex-wrap gap-3">
+                <div class="flex flex-wrap justify-center gap-3">
                     <Button
                         size="lg"
                         class="bg-yellow-400 text-[#0a4d3c] hover:bg-yellow-300"

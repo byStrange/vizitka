@@ -67,9 +67,9 @@ function discountBadge(product: { discount?: number }): string {
     />
 
     <!-- Hero -->
-    <section class="relative overflow-hidden bg-[#0a4d3c] text-white">
+    <section class="relative overflow-hidden bg-[#04452c] text-white">
         <!-- Large logo watermark -->
-        <div class="pointer-events-none absolute right-[-20px] -top-20 opacity-[0.07]">
+        <div class="pointer-events-none absolute right-[50px] top-[-114px]">
             <img
                 src="/images/logo.jpeg"
                 alt=""

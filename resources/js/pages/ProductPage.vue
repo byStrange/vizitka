@@ -154,9 +154,6 @@ function getInitials(name: string): string {
                     <h1 class="text-3xl font-bold text-slate-900">
                         {{ product.name }}
                     </h1>
-                    <p class="mt-1 text-sm text-slate-500">
-                        {{ __('SKU:') }} {{ product.sku }}
-                    </p>
                 </div>
 
                 <p class="text-slate-600">{{ product.description }}</p>
@@ -250,11 +247,6 @@ function getInitials(name: string): string {
                         <CardHeader class="p-4 pb-0">
                             <CardTitle class="text-sm">{{ rp.name }}</CardTitle>
                         </CardHeader>
-                        <CardContent class="p-4 pt-2">
-                            <p class="text-xs text-slate-500">
-                                {{ __('SKU:') }} {{ rp.sku }}
-                            </p>
-                        </CardContent>
                     </Card>
                 </Link>
             </div>

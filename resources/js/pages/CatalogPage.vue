@@ -2,12 +2,7 @@
 import { Head, Link } from '@inertiajs/vue3';
 import { computed } from 'vue';
 import { useTranslations } from '@/composables/useTranslations';
-import {
-    Card,
-    CardContent,
-    CardHeader,
-    CardTitle,
-} from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
@@ -111,7 +106,11 @@ function getInitials(name: string): string {
             {{ activeCategory.description }}
         </p>
         <p v-else class="mb-8 text-slate-600">
-            {{ __('Catalog of textile accessories and finished products from the manufacturer.') }}
+            {{
+                __(
+                    'Catalog of textile accessories and finished products from the manufacturer.',
+                )
+            }}
         </p>
 
         <div class="flex flex-col gap-8 lg:flex-row">
@@ -171,9 +170,15 @@ function getInitials(name: string): string {
                             <SelectValue :placeholder="__('Sort by')" />
                         </SelectTrigger>
                         <SelectContent>
-                            <SelectItem value="newest">{{ __('Newest first') }}</SelectItem>
-                            <SelectItem value="name-asc">{{ __('Name A\u2013Z') }}</SelectItem>
-                            <SelectItem value="name-desc">{{ __('Name Z\u2013A') }}</SelectItem>
+                            <SelectItem value="newest">{{
+                                __('Newest first')
+                            }}</SelectItem>
+                            <SelectItem value="name-asc">{{
+                                __('Name A\u2013Z')
+                            }}</SelectItem>
+                            <SelectItem value="name-desc">{{
+                                __('Name Z\u2013A')
+                            }}</SelectItem>
                         </SelectContent>
                     </Select>
                 </div>
@@ -212,13 +217,13 @@ function getInitials(name: string): string {
                                 </div>
                                 <Badge
                                     v-if="product.isNew"
-                                    class="absolute left-2 top-2 bg-emerald-600 text-white"
+                                    class="absolute top-2 left-2 bg-emerald-600 text-white"
                                 >
                                     {{ __('New') }}
                                 </Badge>
                                 <div
                                     v-if="product.discount"
-                                    class="absolute right-2 top-2 flex h-12 w-12 items-center justify-center rounded-full bg-orange-600 text-xs font-bold text-white"
+                                    class="absolute top-2 right-2 flex h-12 w-12 items-center justify-center rounded-full bg-orange-600 text-xs font-bold text-white"
                                 >
                                     -{{ product.discount }}%
                                 </div>
@@ -234,23 +239,6 @@ function getInitials(name: string): string {
                                 </CardTitle>
                             </CardHeader>
                             <CardContent class="p-4 pt-2">
-                                <p class="text-xs text-slate-500">
-                                    {{ __('SKU:') }} {{ product.sku }}
-                                </p>
-                                <div
-                                    class="mt-3 flex items-center gap-2 text-xs text-slate-500"
-                                >
-                                    <span
-                                        v-if="product.customization"
-                                        class="flex items-center gap-1"
-                                    >
-                                        <Check
-                                            class="h-3 w-3 text-emerald-600"
-                                        />
-                                        {{ __('Customization') }}
-                                    </span>
-                                    <span>{{ __('MOQ:') }} {{ product.moq }}</span>
-                                </div>
                                 <p
                                     class="mt-3 text-sm font-medium text-blue-700 group-hover:underline"
                                 >
@@ -266,9 +254,15 @@ function getInitials(name: string): string {
                     class="flex flex-col items-center justify-center py-20 text-slate-500"
                 >
                     <Factory class="mb-4 h-16 w-16 text-slate-300" />
-                    <p class="text-lg font-medium">{{ __('No products in this category yet') }}</p>
+                    <p class="text-lg font-medium">
+                        {{ __('No products in this category yet') }}
+                    </p>
                     <p class="text-sm">
-                        {{ __('Check availability with our managers or browse other categories') }}
+                        {{
+                            __(
+                                'Check availability with our managers or browse other categories',
+                            )
+                        }}
                     </p>
                 </div>
             </div>

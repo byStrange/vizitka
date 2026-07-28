@@ -25,6 +25,7 @@ const props = defineProps<{
         name: string;
         description: string;
         itemCount: number;
+        image?: string | null;
     }>;
     newProducts: Array<{
         id: number;
@@ -235,7 +236,14 @@ function discountBadge(product: { discount?: number }): string {
                         <div
                             class="flex h-32 items-center justify-center bg-blue-50"
                         >
+                            <img
+                                v-if="cat.image"
+                                :src="cat.image"
+                                :alt="cat.name"
+                                class="h-full w-full object-cover"
+                            />
                             <Factory
+                                v-else
                                 class="h-12 w-12 text-blue-300 transition-colors group-hover:text-blue-500"
                             />
                         </div>

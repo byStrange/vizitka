@@ -27,6 +27,7 @@ class PageController extends Controller
                     'name' => $c->getTranslation('name', 'ru'),
                     'description' => $c->getTranslation('description', 'ru'),
                     'itemCount' => $c->products()->where('is_active', true)->count(),
+                    'image' => $c->first_product_image_url,
                 ]),
             'newProducts' => Product::where('is_active', true)
                 ->where('is_new', true)

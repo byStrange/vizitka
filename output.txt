@@ -1,0 +1,79 @@
+commit bcd4c5533e46fb5c931726ea17dac4cc49b48415
+Merge: 1520ad1 d4c8c04
+Author: Rahmatullo <qosimovrahmatullo006@gmail.com>
+Date:   Mon Jul 27 19:15:54 2026 +0500
+
+    fix: merge
+
+commit 1520ad1931855f6a74dc72a0b840abd75a850d42
+Author: Rahmatullo <qosimovrahmatullo006@gmail.com>
+Date:   Mon Jul 27 19:14:55 2026 +0500
+
+    fix: banner
+
+diff --git a/resources/js/pages/HomePage.vue b/resources/js/pages/HomePage.vue
+index 5b6e858..9206852 100644
+--- a/resources/js/pages/HomePage.vue
++++ b/resources/js/pages/HomePage.vue
+@@ -67,9 +67,9 @@ function discountBadge(product: { discount?: number }): string {
+     />
+ 
+     <!-- Hero -->
+-    <section class="relative overflow-hidden bg-[#0a4d3c] text-white">
++    <section class="relative overflow-hidden bg-[#04452c] text-white">
+         <!-- Large logo watermark -->
+-        <div class="pointer-events-none absolute right-[-20px] -top-20 opacity-[0.07]">
++        <div class="pointer-events-none absolute right-[50px] top-[-114px]">
+             <img
+                 src="/images/logo.jpeg"
+                 alt=""
+
+commit d4c8c0430f75827997e86da8ec2925a22a5557cc
+Author: Rahmatullo <qosimovrahmatullo006@gmail.com>
+Date:   Fri Jul 24 16:50:57 2026 +0500
+
+    ui: center hero text, remove left column constraint, center buttons
+    
+    Clients want text centered (not left-pushed) with more space on the right.
+    Removed max-w-2xl so text uses full container width centered.
+    Centered logo badge and buttons. Watermark stays on right.
+
+diff --git a/resources/js/pages/HomePage.vue b/resources/js/pages/HomePage.vue
+index 5b6e858..a0bc003 100644
+--- a/resources/js/pages/HomePage.vue
++++ b/resources/js/pages/HomePage.vue
+@@ -67,9 +67,9 @@ function discountBadge(product: { discount?: number }): string {
+     />
+ 
+     <!-- Hero -->
+-    <section class="relative overflow-hidden bg-[#0a4d3c] text-white">
++    <section class="relative overflow-hidden bg-[#04452c] text-white">
+         <!-- Large logo watermark -->
+-        <div class="pointer-events-none absolute right-[-20px] -top-20 opacity-[0.07]">
++        <div class="pointer-events-none absolute right-[-20px] -top-20 opacity-100">
+             <img
+                 src="/images/logo.jpeg"
+                 alt=""
+@@ -78,10 +78,10 @@ function discountBadge(product: { discount?: number }): string {
+         </div>
+ 
+         <!-- Content -->
+-        <div class="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:py-28">
+-            <div class="max-w-2xl">
++        <div class="relative mx-auto max-w-7xl px-4 py-20 text-center sm:px-6 lg:py-28">
++            <div>
+                 <!-- Logo badge -->
+-                <div class="mb-6 inline-flex items-center gap-3 rounded-xl bg-white/10 px-4 py-2 backdrop-blur-sm">
++                <div class="mx-auto mb-6 inline-flex items-center gap-3 rounded-xl bg-white/10 px-4 py-2 backdrop-blur-sm">
+                     <img
+                         src="/images/logo.jpeg"
+                         alt="Mirum Textile"
+@@ -102,7 +102,7 @@ function discountBadge(product: { discount?: number }): string {
+                         )
+                     }}
+                 </p>
+-                <div class="flex flex-wrap gap-3">
++                <div class="flex flex-wrap justify-center gap-3">
+                     <Button
+                         size="lg"
+                         class="bg-yellow-400 text-[#0a4d3c] hover:bg-yellow-300"

@@ -6,6 +6,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Facades\Storage;
 use Spatie\Translatable\HasTranslations;
 
 class Category extends Model
@@ -34,6 +35,17 @@ class Category extends Model
     public function products(): HasMany
     {
         return $this->hasMany(Product::class);
+    }
+
+    public function getFirstProductImageUrlAttribute(): ?string
+    {
+        $image = $this->products()
+            ->where('is_active', true)
+            ->whereNotNull('image')
+            ->orderBy('id')
+            ->value('image');
+
+        return $image ? Storage::disk('public')->url($image) : null;
     }
 
     public function getRouteKeyName(): string

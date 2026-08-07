@@ -418,7 +418,7 @@ function discountBadge(product: { discount?: number }): string {
                 <div
                     class="flex aspect-video items-center justify-center rounded-xl bg-slate-100"
                 >
-                    <Factory class="h-24 w-24 text-slate-300" />
+                <img src="/images/home-section.jpg" alt="">
                 </div>
                 <div>
                     <h2 class="mb-4 text-3xl font-bold text-slate-900">

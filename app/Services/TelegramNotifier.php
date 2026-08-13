@@ -117,7 +117,17 @@ class TelegramNotifier
      */
     public function sendQuoteRequest(QuoteRequest $quoteRequest): bool
     {
-        return $this->send($this->formatQuoteRequest($quoteRequest));
+        $sent = $this->send($this->formatQuoteRequest($quoteRequest));
+
+        if ($sent) {
+            // Logged so a delivered lead leaves a trace: without it, success and
+            // "the code never ran" are indistinguishable in the log.
+            Log::info('Telegram notification sent for quote request.', [
+                'quote_request_id' => $quoteRequest->getKey(),
+            ]);
+        }
+
+        return $sent;
     }
 
     public function send(string $message): bool

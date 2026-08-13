@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\QuoteRequest;
+use App\Services\TelegramNotifier;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -29,7 +30,7 @@ class ContactController extends Controller
         ]);
     }
 
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request, TelegramNotifier $telegram): RedirectResponse
     {
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
@@ -41,7 +42,9 @@ class ContactController extends Controller
             'message' => ['nullable', 'string', 'max:5000'],
         ]);
 
-        QuoteRequest::create(array_merge($validated, ['status' => 'new']));
+        $quoteRequest = QuoteRequest::create(array_merge($validated, ['status' => 'new']));
+
+        $telegram->sendQuoteRequest($quoteRequest);
 
         return redirect()->back()->with('success', __('Request sent! We will contact you within one business day.'));
     }

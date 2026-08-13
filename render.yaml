@@ -35,6 +35,13 @@ services:
             value: log
           - key: SEED_ON_DEPLOY
             value: 'true'
+          # Secrets: set the values in the Render dashboard, not here.
+          - key: TELEGRAM_BOT_TOKEN
+            sync: false
+          - key: TELEGRAM_CHAT_ID
+            sync: false
+          - key: TELEGRAM_THREAD_ID
+            sync: false
       region: oregon
       plan: free
       healthCheckPath: /

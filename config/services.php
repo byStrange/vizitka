@@ -35,4 +35,14 @@ return [
         ],
     ],
 
+    'telegram' => [
+        'bot_token' => env('TELEGRAM_BOT_TOKEN'),
+        'chat_id' => env('TELEGRAM_CHAT_ID'),
+        // Optional: topic id when the group has Topics (forums) enabled.
+        'thread_id' => env('TELEGRAM_THREAD_ID'),
+        'timeout' => env('TELEGRAM_TIMEOUT', 5),
+        'tries' => env('TELEGRAM_TRIES', 2),
+        'timezone' => env('TELEGRAM_TIMEZONE', 'Asia/Tashkent'),
+    ],
+
 ];

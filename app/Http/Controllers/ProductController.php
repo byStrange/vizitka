@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Inertia\Response;
 
 class ProductController extends Controller
 {
-    public function index(Request $request): \Inertia\Response
+    public function index(Request $request): Response
     {
         $category = $request->query('category');
 
@@ -31,7 +32,7 @@ class ProductController extends Controller
         ]);
     }
 
-    public function show(Product $product): \Inertia\Response
+    public function show(Product $product): Response
     {
         return Inertia::render('ProductDetail', [
             'product' => $product,

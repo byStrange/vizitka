@@ -7,6 +7,11 @@ namespace App\Console\Commands;
 use App\Models\Product;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Drivers\Gd\Driver;
+use Intervention\Image\Encoders\AvifEncoder;
+use Intervention\Image\Encoders\JpegEncoder;
+use Intervention\Image\Encoders\PngEncoder;
+use Intervention\Image\Encoders\WebpEncoder;
 use Intervention\Image\ImageManager;
 
 class OptimizeImages extends Command
@@ -19,7 +24,7 @@ class OptimizeImages extends Command
 
     public function handle(): int
     {
-        $manager = new ImageManager(\Intervention\Image\Drivers\Gd\Driver::class);
+        $manager = new ImageManager(Driver::class);
         $disk = Storage::disk('public');
         $dryRun = $this->option('dry-run');
 
@@ -39,6 +44,7 @@ class OptimizeImages extends Command
 
             if (! file_exists($fullPath)) {
                 $bar->advance();
+
                 continue;
             }
 
@@ -50,6 +56,7 @@ class OptimizeImages extends Command
             if (! in_array($ext, ['jpg', 'jpeg', 'png', 'webp', 'avif'])) {
                 $skipped++;
                 $bar->advance();
+
                 continue;
             }
 
@@ -61,10 +68,10 @@ class OptimizeImages extends Command
 
                 if (! $dryRun) {
                     $encoded = match ($ext) {
-                        'png' => $image->encode(new \Intervention\Image\Encoders\PngEncoder()),
-                        'jpg', 'jpeg' => $image->encode(new \Intervention\Image\Encoders\JpegEncoder(quality: 85, progressive: true)),
-                        'webp' => $image->encode(new \Intervention\Image\Encoders\WebpEncoder(quality: 85)),
-                        'avif' => $image->encode(new \Intervention\Image\Encoders\AvifEncoder(quality: 75)),
+                        'png' => $image->encode(new PngEncoder),
+                        'jpg', 'jpeg' => $image->encode(new JpegEncoder(quality: 85, progressive: true)),
+                        'webp' => $image->encode(new WebpEncoder(quality: 85)),
+                        'avif' => $image->encode(new AvifEncoder(quality: 75)),
                     };
 
                     $encoded->save($fullPath);
@@ -108,7 +115,7 @@ class OptimizeImages extends Command
             if (is_dir($fullDir)) {
                 foreach (new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($fullDir)) as $file) {
                     if ($file->isFile()) {
-                        $paths[] = $customPath . '/' . $file->getFilename();
+                        $paths[] = $customPath.'/'.$file->getFilename();
                     }
                 }
             }
@@ -147,6 +154,6 @@ class OptimizeImages extends Command
             $unitIndex++;
         }
 
-        return round($bytes, 2) . ' ' . $units[$unitIndex];
+        return round($bytes, 2).' '.$units[$unitIndex];
     }
 }

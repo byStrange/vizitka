@@ -6,6 +6,11 @@ namespace App\Services;
 
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Drivers\Gd\Driver;
+use Intervention\Image\Encoders\AvifEncoder;
+use Intervention\Image\Encoders\JpegEncoder;
+use Intervention\Image\Encoders\PngEncoder;
+use Intervention\Image\Encoders\WebpEncoder;
 use Intervention\Image\ImageManager;
 use Symfony\Component\HttpFoundation\File\UploadedFile as SymfonyUploadedFile;
 
@@ -15,7 +20,7 @@ class ImageOptimizer
 
     public function __construct()
     {
-        $this->manager = new ImageManager(\Intervention\Image\Drivers\Gd\Driver::class);
+        $this->manager = new ImageManager(Driver::class);
     }
 
     /**
@@ -26,14 +31,14 @@ class ImageOptimizer
         $ext = strtolower($file->getClientOriginalExtension());
         $hash = uniqid();
         $name = match ($ext) {
-            'jpg', 'jpeg' => $hash . '.jpg',
-            'png' => $hash . '.png',
-            'webp' => $hash . '.webp',
-            'avif' => $hash . '.avif',
-            default => $hash . '.' . $ext,
+            'jpg', 'jpeg' => $hash.'.jpg',
+            'png' => $hash.'.png',
+            'webp' => $hash.'.webp',
+            'avif' => $hash.'.avif',
+            default => $hash.'.'.$ext,
         };
 
-        $relativePath = trim($directory, '/') . '/' . $name;
+        $relativePath = trim($directory, '/').'/'.$name;
         $fullPath = Storage::disk($disk)->path($relativePath);
 
         // Ensure directory exists
@@ -48,11 +53,11 @@ class ImageOptimizer
         $image->scaleDown(1600, 1600);
 
         $encoded = match ($ext) {
-            'png' => $image->encode(new \Intervention\Image\Encoders\PngEncoder()),
-            'jpg', 'jpeg' => $image->encode(new \Intervention\Image\Encoders\JpegEncoder(quality: 85, progressive: true)),
-            'webp' => $image->encode(new \Intervention\Image\Encoders\WebpEncoder(quality: 85)),
-            'avif' => $image->encode(new \Intervention\Image\Encoders\AvifEncoder(quality: 75)),
-            default => $image->encode(new \Intervention\Image\Encoders\JpegEncoder(quality: 85, progressive: true)),
+            'png' => $image->encode(new PngEncoder),
+            'jpg', 'jpeg' => $image->encode(new JpegEncoder(quality: 85, progressive: true)),
+            'webp' => $image->encode(new WebpEncoder(quality: 85)),
+            'avif' => $image->encode(new AvifEncoder(quality: 75)),
+            default => $image->encode(new JpegEncoder(quality: 85, progressive: true)),
         };
 
         $encoded->save($fullPath);
@@ -79,10 +84,10 @@ class ImageOptimizer
         $image->scaleDown(1600, 1600);
 
         $encoded = match ($ext) {
-            'png' => $image->encode(new \Intervention\Image\Encoders\PngEncoder()),
-            'jpg', 'jpeg' => $image->encode(new \Intervention\Image\Encoders\JpegEncoder(quality: 85, progressive: true)),
-            'webp' => $image->encode(new \Intervention\Image\Encoders\WebpEncoder(quality: 85)),
-            'avif' => $image->encode(new \Intervention\Image\Encoders\AvifEncoder(quality: 75)),
+            'png' => $image->encode(new PngEncoder),
+            'jpg', 'jpeg' => $image->encode(new JpegEncoder(quality: 85, progressive: true)),
+            'webp' => $image->encode(new WebpEncoder(quality: 85)),
+            'avif' => $image->encode(new AvifEncoder(quality: 75)),
         };
 
         $encoded->save($absolutePath);

@@ -70,13 +70,26 @@ function getInitials(name: string): string {
 </script>
 
 <template>
-    <Head
-        :title="
-            activeCategory
-                ? `${activeCategory.name} \u2014 ${__('Products')} | Mirum Textile`
-                : `${__('Products')} | Mirum Textile`
-        "
-    />
+    <Head>
+        <title>
+            {{
+                activeCategory
+                    ? `${activeCategory.name} \u2014 ${__('Products')} | Mirum Textile`
+                    : `${__('Products')} | Mirum Textile`
+            }}
+        </title>
+        <meta
+            name="description"
+            head-key="description"
+            :content="
+                activeCategory && activeCategory.description
+                    ? activeCategory.description
+                    : __(
+                          'Mirum Textile product catalog. We offer a wide range of textile accessories and knitted products from the manufacturer in Uzbekistan.',
+                      )
+            "
+        />
+    </Head>
 
     <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         <!-- Breadcrumb -->

@@ -2,12 +2,7 @@
 import { Head, Link } from '@inertiajs/vue3';
 import { computed } from 'vue';
 import { useTranslations } from '@/composables/useTranslations';
-import {
-    Card,
-    CardContent,
-    CardHeader,
-    CardTitle,
-} from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Factory, Phone, MessageCircle } from 'lucide-vue-next';
@@ -24,9 +19,9 @@ const props = defineProps<{
         name: string;
         sku: string;
         category: {
-            id: number
-            name: string
-            slug: string
+            id: number;
+            name: string;
+            slug: string;
         };
         description: string;
         image?: string;
@@ -44,9 +39,9 @@ const props = defineProps<{
         name: string;
         sku: string;
         category: {
-            id: number
-            name: string
-            slug: string
+            id: number;
+            name: string;
+            slug: string;
         };
         description: string;
         image?: string;
@@ -72,13 +67,30 @@ function getInitials(name: string): string {
 </script>
 
 <template>
-    <Head
-        :title="
-            product
-                ? `${product.name} \u2014 ${__('SKU:')} ${product.sku} | Mirum Textile`
-                : `${__('Product Not Found')} | Mirum Textile`
-        "
-    />
+    <Head>
+        <title>
+            {{
+                product
+                    ? `${product.name} \u2014 ${__('SKU:')} ${product.sku} | Mirum Textile`
+                    : `${__('Product Not Found')} | Mirum Textile`
+            }}
+        </title>
+        <meta
+            v-if="product"
+            name="description"
+            head-key="description"
+            :content="
+                product.description ||
+                `${product.name} - ${__('buy wholesale from the manufacturer Mirum Textile in Uzbekistan. SKU:')} ${product.sku}`
+            "
+        />
+        <meta
+            v-if="product && product.image"
+            property="og:image"
+            head-key="og:image"
+            :content="product.image"
+        />
+    </Head>
 
     <div v-if="product" class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         <!-- Breadcrumb -->
@@ -88,7 +100,10 @@ function getInitials(name: string): string {
             </Link>
             <span>/</span>
             <Link
-                :href="catalog.url() + (categorySlug ? '?category=' + categorySlug : '')"
+                :href="
+                    catalog.url() +
+                    (categorySlug ? '?category=' + categorySlug : '')
+                "
                 class="hover:text-slate-900 hover:underline"
             >
                 {{ product.category.name }}
@@ -140,8 +155,13 @@ function getInitials(name: string): string {
             <div class="flex flex-col gap-6">
                 <div>
                     <div class="mb-2 flex items-center gap-2">
-                        <Badge variant="secondary">{{ product.category.name }}</Badge>
-                        <Badge v-if="product.isNew" class="bg-emerald-600 text-white">
+                        <Badge variant="secondary">{{
+                            product.category.name
+                        }}</Badge>
+                        <Badge
+                            v-if="product.isNew"
+                            class="bg-emerald-600 text-white"
+                        >
                             {{ __('New') }}
                         </Badge>
                         <Badge
@@ -165,7 +185,9 @@ function getInitials(name: string): string {
                     </h3>
                     <div class="divide-y rounded-md border">
                         <div
-                            v-for="[key, value] in Object.entries(product.specs)"
+                            v-for="[key, value] in Object.entries(
+                                product.specs,
+                            )"
                             :key="key"
                             class="flex items-center justify-between px-4 py-3"
                         >
@@ -181,19 +203,24 @@ function getInitials(name: string): string {
 
                 <!-- CTAs -->
                 <div class="space-y-3">
-                    <Button class="w-full bg-blue-700 hover:bg-blue-800" size="lg" as-child>
-                        <Link :href="contact.url() + '?product=' + product.slug">
+                    <Button
+                        class="w-full bg-blue-700 hover:bg-blue-800"
+                        size="lg"
+                        as-child
+                    >
+                        <Link
+                            :href="contact.url() + '?product=' + product.slug"
+                        >
                             {{ __('Request a Commercial Proposal') }}
                             <ArrowRight class="ml-2 h-4 w-4" />
                         </Link>
                     </Button>
                     <div class="flex gap-3">
-                        <Button
-                            variant="outline"
-                            class="flex-1"
-                            as-child
-                        >
-                            <a href="https://wa.me/998712539540" target="_blank">
+                        <Button variant="outline" class="flex-1" as-child>
+                            <a
+                                href="https://wa.me/998712539540"
+                                target="_blank"
+                            >
                                 <MessageCircle class="mr-2 h-4 w-4" />
                                 {{ __('WhatsApp') }}
                             </a>
@@ -259,9 +286,15 @@ function getInitials(name: string): string {
         class="mx-auto max-w-7xl px-4 py-20 text-center sm:px-6 lg:px-8"
     >
         <Factory class="mx-auto mb-4 h-16 w-16 text-slate-300" />
-        <h1 class="text-2xl font-bold text-slate-900">{{ __('Product Not Found') }}</h1>
+        <h1 class="text-2xl font-bold text-slate-900">
+            {{ __('Product Not Found') }}
+        </h1>
         <p class="mt-2 text-slate-500">
-            {{ __('The product may have been removed or moved to another category.') }}
+            {{
+                __(
+                    'The product may have been removed or moved to another category.',
+                )
+            }}
         </p>
         <Button class="mt-6 bg-blue-700 hover:bg-blue-800" as-child>
             <Link :href="catalog()">{{ __('Back to Catalog') }}</Link>

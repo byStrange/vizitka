@@ -9,6 +9,7 @@ use ZipArchive;
 class ExportStorage extends Command
 {
     protected $signature = 'app:export-storage';
+
     protected $description = 'Zip storage/app directory';
 
     public function handle()
@@ -16,7 +17,7 @@ class ExportStorage extends Command
         $zip = new ZipArchive;
         $zipPath = public_path('storage_backup.zip');
 
-        if ($zip->open($zipPath, ZipArchive::CREATE | ZipArchive::OVERWRITE) === TRUE) {
+        if ($zip->open($zipPath, ZipArchive::CREATE | ZipArchive::OVERWRITE) === true) {
             $files = File::allFiles(storage_path('app'));
 
             $this->withProgressBar($files, function ($file) use ($zip) {
@@ -25,9 +26,9 @@ class ExportStorage extends Command
 
             $zip->close();
             $this->newLine();
-            $this->info("Backup created: " . $zipPath);
+            $this->info('Backup created: '.$zipPath);
         } else {
-            $this->error("Failed to create zip.");
+            $this->error('Failed to create zip.');
         }
     }
 }

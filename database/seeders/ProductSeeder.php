@@ -31,7 +31,7 @@ class ProductSeeder extends Seeder
                 'name' => ['ru' => 'Воротник-5', 'uz' => 'Yoqa-5'],
                 'sku' => 'DK-0002',
                 'category_id' => 1,
-                'description' => ['ru' => 'Плосковязаный воротник с фигурным краем.', 'uz' => "Figurali chetli tekis trikotaj yoqa."],
+                'description' => ['ru' => 'Плосковязаный воротник с фигурным краем.', 'uz' => 'Figurali chetli tekis trikotaj yoqa.'],
                 'specs' => [
                     ['label' => 'Состав', 'value' => '100% хлопок'],
                     ['label' => 'Ширина', 'value' => '4.0 см'],
@@ -44,10 +44,10 @@ class ProductSeeder extends Seeder
             ],
             [
                 'slug' => 'shnur-kruglovyazanyy',
-                'name' => ['ru' => 'Шнур кругловязаный 6-ти игольный', 'uz' => "6-ishli dumaloq trikoj arqon"],
+                'name' => ['ru' => 'Шнур кругловязаный 6-ти игольный', 'uz' => '6-ishli dumaloq trikoj arqon'],
                 'sku' => 'DK-0030',
                 'category_id' => 3,
-                'description' => ['ru' => 'Уникальный 6-ти игольный кругловязаный шнур.', 'uz' => "Noyob 6-ishli dumaloq trikoj arqon."],
+                'description' => ['ru' => 'Уникальный 6-ти игольный кругловязаный шнур.', 'uz' => 'Noyob 6-ishli dumaloq trikoj arqon.'],
                 'specs' => [
                     ['label' => 'Состав', 'value' => '100% хлопок / полиэстер'],
                     ['label' => 'Диаметр', 'value' => '3-8 мм'],
@@ -77,10 +77,10 @@ class ProductSeeder extends Seeder
             ],
             [
                 'slug' => 'lenta-zhakkardovaya',
-                'name' => ['ru' => 'Лента жаккардовая с логотипом', 'uz' => "Jakkard lentasi logotip bilan"],
+                'name' => ['ru' => 'Лента жаккардовая с логотипом', 'uz' => 'Jakkard lentasi logotip bilan'],
                 'sku' => 'DK-0020',
                 'category_id' => 2,
-                'description' => ['ru' => 'Жаккардовая лента с интегрированным логотипом.', 'uz' => "Integrallashgan logotip bilan jakkard lentasi."],
+                'description' => ['ru' => 'Жаккардовая лента с интегрированным логотипом.', 'uz' => 'Integrallashgan logotip bilan jakkard lentasi.'],
                 'specs' => [
                     ['label' => 'Состав', 'value' => '100% полиэстер'],
                     ['label' => 'Ширина', 'value' => '10-25 мм'],

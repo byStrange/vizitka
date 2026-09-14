@@ -96,7 +96,18 @@ const row2 = clients.slice(14);
 </script>
 
 <template>
-    <Head :title="__('About the Company') + ' \u2014 Mirum Textile'" />
+    <Head>
+        <title>{{ __('About the Company') + ' \u2014 Mirum Textile' }}</title>
+        <meta
+            name="description"
+            head-key="description"
+            :content="
+                __(
+                    'MIRUM TEXTILE is a textile company operating in Uzbekistan, specializing in knitted textile accessories and auxiliary products for garment manufacturers.',
+                )
+            "
+        />
+    </Head>
 
     <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         <!-- Header -->
@@ -117,7 +128,7 @@ const row2 = clients.slice(14);
         </div>
 
         <!-- Stats -->
-        <div class="mb-16 grid gap-4 sm:grid-cols-2  justify-center">
+        <div class="mb-16 grid justify-center gap-4 sm:grid-cols-2">
             <Card
                 v-for="stat in stats"
                 :key="stat.labelKey"

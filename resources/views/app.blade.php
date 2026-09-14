@@ -33,8 +33,20 @@
         @fonts
 
         @vite(['resources/css/app.css', 'resources/js/app.ts', "resources/js/pages/{$page['component']}.vue"])
+        
+        {{-- Default SEO Meta Tags (Inertia head may override these for JS clients, but crawlers see this first) --}}
+        <meta name="description" content="Mirum Textile (Mirum Tekstil) - производство и продажа трикотажной фурнитуры от производителя. Производство воротников, манжет, шнуров, тесьмы и готового трикотажа в Узбекистане.">
+        <meta name="keywords" content="mirum textile, mirum tekstil, mirum textil, трикотажная фурнитура, воротники, манжеты, шнуры, тесьма, узбекистан, производство текстиля">
+        
+        {{-- Open Graph / Facebook --}}
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="{{ url()->current() }}">
+        <meta property="og:title" content="{{ config('app.name', 'Mirum Textile') }}">
+        <meta property="og:description" content="Mirum Textile (Mirum Tekstil) - производство и продажа трикотажной фурнитуры от производителя в Узбекистане.">
+        <meta property="og:image" content="{{ url('/images/logo.jpeg') }}">
+
         <x-inertia::head>
-            <title>{{ config('app.name') }}</title>
+            <title>{{ config('app.name', 'Mirum Textile') }}</title>
         </x-inertia::head>
     </head>
     <body class="font-sans antialiased">

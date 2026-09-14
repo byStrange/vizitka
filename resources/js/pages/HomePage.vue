@@ -61,16 +61,29 @@ function discountBadge(product: { discount?: number }): string {
 </script>
 
 <template>
-    <Head
-        :title="
-            __('Textile accessories from the manufacturer') + ' | Mirum Textile'
-        "
-    />
+    <Head>
+        <title>
+            {{ __('Textile accessories from the manufacturer') }} | Mirum
+            Textile
+        </title>
+        <meta
+            name="description"
+            head-key="description"
+            content="Mirum Textile (Mirum Tekstil) - производство и продажа трикотажной фурнитуры от производителя. Производство воротников, манжет, шнуров, тесьмы и готового трикотажа в Узбекистане."
+        />
+        <meta
+            name="keywords"
+            head-key="keywords"
+            content="mirum textile, mirum tekstil, mirum textil, трикотажная фурнитура, воротники, манжеты, шнуры, тесьма, узбекистан, производство текстиля"
+        />
+    </Head>
 
     <!-- Hero -->
     <section class="relative overflow-hidden bg-[#04452c] text-white">
         <!-- Large logo watermark -->
-        <div class="pointer-events-none absolute right-[50px] top-[-114px] hidden lg:block">
+        <div
+            class="pointer-events-none absolute top-[-114px] right-[50px] hidden lg:block"
+        >
             <img
                 src="/images/logo.jpeg"
                 alt=""
@@ -82,7 +95,9 @@ function discountBadge(product: { discount?: number }): string {
         <div class="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:py-28">
             <div class="max-w-2xl">
                 <!-- Logo badge -->
-                <div class="mb-6 inline-flex items-center gap-3 rounded-xl bg-white/10 px-4 py-2 backdrop-blur-sm">
+                <div
+                    class="mb-6 inline-flex items-center gap-3 rounded-xl bg-white/10 px-4 py-2 backdrop-blur-sm"
+                >
                     <img
                         src="/images/logo.jpeg"
                         alt="Mirum Textile"
@@ -129,7 +144,9 @@ function discountBadge(product: { discount?: number }): string {
         </div>
 
         <!-- Subtle bottom edge fade -->
-        <div class="absolute bottom-0 h-16 w-full bg-gradient-to-t from-[#0a4d3c]/40 to-transparent"></div>
+        <div
+            class="absolute bottom-0 h-16 w-full bg-gradient-to-t from-[#0a4d3c]/40 to-transparent"
+        ></div>
     </section>
 
     <!-- Advantages -->
@@ -418,7 +435,7 @@ function discountBadge(product: { discount?: number }): string {
                 <div
                     class="flex aspect-video items-center justify-center rounded-xl bg-slate-100"
                 >
-                <img src="/images/home-section.jpg" alt="">
+                    <img src="/images/home-section.jpg" alt="" />
                 </div>
                 <div>
                     <h2 class="mb-4 text-3xl font-bold text-slate-900">

@@ -13,7 +13,7 @@ class ContentSeeder extends Seeder
         Page::create([
             'slug' => 'about',
             'title' => ['ru' => 'О компании', 'uz' => 'Kompaniya haqida'],
-            'content' => ['ru' => 'Mirum Textile — производитель текстильных аксессуаров...', 'uz' => "Mirum Textile — tekstil aksessuarlari ishlab chiqaruvchisi..."],
+            'content' => ['ru' => 'Mirum Textile — производитель текстильных аксессуаров...', 'uz' => 'Mirum Textile — tekstil aksessuarlari ishlab chiqaruvchisi...'],
             'meta_title' => 'О компании — Mirum Textile',
             'meta_description' => 'Производитель текстильных аксессуаров с 2001 года.',
             'is_active' => true,

@@ -9,7 +9,7 @@ return new class extends Migration
     public function up(): void
     {
 
-        if(!Schema::hasTable('quote_requests')) {
+        if (! Schema::hasTable('quote_requests')) {
             Schema::create('quote_requests', function (Blueprint $table) {
                 $table->id();
                 $table->string('name');

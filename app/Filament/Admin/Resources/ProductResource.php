@@ -7,6 +7,7 @@ namespace App\Filament\Admin\Resources;
 use App\Filament\Admin\Resources\ProductResource\Pages;
 use App\Models\Category;
 use App\Models\Product;
+use App\Services\ImageOptimizer;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
@@ -91,7 +92,7 @@ class ProductResource extends Resource
                             ->directory('products')
                             ->label('Главное изображение')
                             ->saveUploadedFileUsing(function ($file, $statePath) {
-                                return app(\App\Services\ImageOptimizer::class)->compressAndStore($file, 'products');
+                                return app(ImageOptimizer::class)->compressAndStore($file, 'products');
                             }),
                         FileUpload::make('gallery')
                             ->multiple()
@@ -100,7 +101,7 @@ class ProductResource extends Resource
                             ->directory('products/gallery')
                             ->label('Галерея')
                             ->saveUploadedFileUsing(function ($file, $statePath) {
-                                return app(\App\Services\ImageOptimizer::class)->compressAndStore($file, 'products/gallery');
+                                return app(ImageOptimizer::class)->compressAndStore($file, 'products/gallery');
                             }),
                         Grid::make(3)
                             ->schema([

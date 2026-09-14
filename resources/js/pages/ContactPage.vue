@@ -193,6 +193,30 @@ function submit() {
 
                             <div class="grid gap-5 sm:grid-cols-2">
                                 <div class="space-y-2">
+                                    <Label for="phone">{{ __('Phone *') }}</Label>
+                                    <Input
+                                        id="phone"
+                                        v-model="form.phone"
+                                        type="tel"
+                                        :placeholder="__('+998 XX XXX XX XX')"
+                                        required
+                                    />
+                                    <div v-if="form.errors.phone" class="text-sm text-red-600">{{ form.errors.phone }}</div>
+                                </div>
+                                <div class="space-y-2">
+                                    <Label for="email">{{ __('Email') }}</Label>
+                                    <Input
+                                        id="email"
+                                        v-model="form.email"
+                                        type="email"
+                                        :placeholder="__('you@example.com')"
+                                    />
+                                    <div v-if="form.errors.email" class="text-sm text-red-600">{{ form.errors.email }}</div>
+                                </div>
+                            </div>
+
+                            <div class="grid gap-5 sm:grid-cols-2">
+                                <div class="space-y-2">
                                     <Label for="product">{{ __('Product of interest') }}</Label>
                                     <Select v-model="form.product_interest">
                                         <SelectTrigger>
